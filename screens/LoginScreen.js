@@ -11,9 +11,7 @@ function LoginScreen() {
         style={styles.linearGradientContainer}
       >
         <Image style={styles.logo} source={require("../assets/bau-logo.png")} />
-        <Text style={styles.introductionText}>
-          Welcome, Dear BAU Member...!
-        </Text>
+        <Text style={styles.introductionText}>Welcome, Dear BAU Member!</Text>
         <AuthContent />
       </LinearGradient>
     </View>
