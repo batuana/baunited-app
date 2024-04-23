@@ -1,17 +1,19 @@
-import { View, Text, StyleSheet, Image } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import AuthContent from '../components/Auth/AuthContent';
+import { View, Text, StyleSheet, Image } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import AuthContent from "../components/Auth/AuthContent";
 
 function LoginScreen() {
   return (
     <View style={styles.loginScreen}>
       <LinearGradient
-        colors={['#4393BF', '#59B9EF', '#e9ecee']}
+        colors={["#4393BF", "#59B9EF", "#e9ecee"]}
         locations={[0, 0.35, 1]}
         style={styles.linearGradientContainer}
       >
-        <Image style={styles.logo} source={require('../assets/bau-logo.png')} />
-        <Text style={styles.introductionText}>Welcome, Dear BAU Member!</Text>
+        <Image style={styles.logo} source={require("../assets/bau-logo.png")} />
+        <Text style={styles.introductionText}>
+          Welcome, Dear BAU Member...!
+        </Text>
         <AuthContent />
       </LinearGradient>
     </View>
@@ -25,18 +27,18 @@ const styles = StyleSheet.create({
   },
   linearGradientContainer: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center",
   },
   logo: {
     width: 270,
     height: 100,
     borderWidth: 2,
-    borderColor: 'red',
+    borderColor: "red",
   },
   introductionText: {
     fontSize: 32,
-    fontFamily: 'poppins-semibold',
+    fontFamily: "poppins-semibold",
     borderWidth: 2,
-    borderColor: 'red',
+    borderColor: "red",
   },
 });
