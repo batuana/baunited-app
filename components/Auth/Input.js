@@ -1,50 +1,20 @@
-import React, { useState, useRef } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  TextInput,
-  Animated,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-} from "react-native";
-import { Colors } from "../../constants/styles";
-import { Ionicons } from "@expo/vector-icons";
+import React, { useState, useRef } from 'react';
+import { Text, View, StyleSheet, TextInput, Animated, TouchableOpacity } from 'react-native';
+import { Colors } from '../../constants/styles';
+import { Ionicons } from '@expo/vector-icons';
 
-function Input({
-  label,
-  secure,
-  value,
-  onUpdateValue,
-  placeholder,
-  style,
-  icon,
-  size,
-}) {
+function Input({ label, secure, value, onUpdateValue, placeholder, icon }) {
   const [isFocused, setIsFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [placeholderHeight, setPlaceholderHeight] = useState(0);
-  const topValue = useRef(new Animated.Value(15)).current;
+  const topValue = useRef(new Animated.Value(0)).current;
 
-  const movePlaceholderTop = () => {
+  const movePlaceholder = offset => {
     Animated.timing(topValue, {
-      toValue: 0,
+      toValue: offset,
       duration: 200,
       useNativeDriver: true,
     }).start();
-  };
-
-  const movePlaceholderCenter = () => {
-    Animated.timing(topValue, {
-      toValue: isFocused || value ? 0 : 15,
-      duration: 200,
-      useNativeDriver: true,
-    }).start();
-  };
-
-  const handleTextLayout = async (event) => {
-    const { height } = event.nativeEvent.layout;
-    setPlaceholderHeight(height);
   };
 
   return (
@@ -52,47 +22,44 @@ function Input({
       <Text style={styles.label}>{label}</Text>
       <View>
         <TextInput
-          style={[styles.input, style]}
+          style={styles.input}
           autoCapitalize="none"
           secureTextEntry={!showPassword && secure} // Dynamic secureTextEntry
           value={value}
           onChangeText={onUpdateValue}
           onFocus={() => {
-            // setIsFocused(true);
-            movePlaceholderTop();
+            movePlaceholder(-15);
           }}
           onBlur={() => {
-            // setIsFocused(false);
-            movePlaceholderCenter();
+            if (value === '') movePlaceholder(0);
           }}
           keyboardShouldPersistTaps="handled"
         />
         <Animated.View
           style={[
-            styles.animatedPlaceholderText,
+            styles.animatedPlaceholderTextContainer,
             {
               transform: [{ translateY: topValue }],
-              // transform: [{ translateY: -0.5 * placeholderHeight }],
             },
           ]}
+          pointerEvents="none"
         >
-          <Text onLayout={handleTextLayout} style={styles.placeholderText}>
-            {placeholder}
-          </Text>
+          <Animated.Text style={styles.placeholderText}>{placeholder}</Animated.Text>
         </Animated.View>
-        {icon === "eye" && ( // Render eye icon only if it's specified
+        {icon.name === 'eye' && (
           <TouchableOpacity
             style={styles.iconContainer}
-            onPress={() => setShowPassword(!showPassword)} // Toggle showPassword state
+            onPress={() => setShowPassword(!showPassword)}
           >
-            <Ionicons name={showPassword ? "eye-off" : "eye"} size={size} />
+            <Ionicons name={showPassword ? 'eye-off' : 'eye'} size={icon.size} />
           </TouchableOpacity>
         )}
-        {icon !== "eye" && ( // Render other icons
+        {icon.name !== 'eye' && (
           <View style={styles.iconContainer}>
-            <Ionicons name={icon} size={size} />
+            <Ionicons name={icon.name} size={icon.size} />
           </View>
         )}
+        <View></View>
       </View>
     </View>
   );
@@ -102,18 +69,22 @@ export default Input;
 
 const styles = StyleSheet.create({
   inputContainer: {},
-  animatedPlaceholderText: {
-    position: "absolute",
-    marginLeft: 20,
+  animatedPlaceholderTextContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'center',
   },
-  placeholderText: { color: "#B3B3B3", fontSize: 12 },
+  placeholderText: { color: '#B3B3B3', fontSize: 14, marginLeft: 20 },
   label: {
     color: Colors.primary800,
-    fontFamily: "poppins-semibold",
+    fontFamily: 'poppins-semibold',
   },
   input: {
-    backgroundColor: "#ffffff",
-    borderColor: "#B3B3B3",
+    backgroundColor: '#ffffff',
+    borderColor: '#B3B3B3',
     borderWidth: 1,
     borderRadius: 50,
     paddingVertical: 12,
@@ -122,8 +93,10 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   iconContainer: {
-    position: "absolute",
+    position: 'absolute',
+    justifyContent: 'center',
+    top: 0,
+    bottom: 0,
     right: 20,
-    top: 12,
   },
 });

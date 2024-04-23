@@ -1,40 +1,44 @@
-import { View, Text, StyleSheet, Image } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
-import AuthContent from "../components/Auth/AuthContent";
-import LinkButton from "../components/Ui/LinkButton";
+import { View, ScrollView, Text, StyleSheet, Image } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import AuthContent from '../components/Auth/AuthContent';
+import LinkButton from '../components/UI/LinkButton';
+import { KeyboardAvoidingView } from 'react-native';
+import { Dimensions } from 'react-native';
 
 function LoginScreen() {
   return (
-    <View style={styles.loginScreen}>
+    <ScrollView style={styles.loginScreen} behavior="height">
       <LinearGradient
-        colors={["#4393BF", "#59B9EF", "#e9ecee"]}
+        colors={['#4393BF', '#59B9EF', '#e9ecee']}
         locations={[0, 0.35, 1]}
         style={styles.linearGradientContainer}
       >
-        <Image style={styles.logo} source={require("../assets/bau-logo.png")} />
+        <Image style={styles.logo} source={require('../assets/images/bau-logo.png')} />
         <Text style={styles.introductionText}>Welcome, Dear BAU Member!</Text>
         <AuthContent />
         <View style={styles.buttonContainer}>
-          <LinkButton text="UMIS" imageSource={require("../assets/umis.png")} />
-          <LinkButton
-            text="ItsLearning"
-            imageSource={require("../assets/itslearning.png")}
-          />
+          <LinkButton imageSource={require('../assets/images/umis-logo.png')} />
+          <LinkButton imageSource={require('../assets/images/Itslearning-logo.png')} />
         </View>
       </LinearGradient>
-    </View>
+    </ScrollView>
   );
 }
 export default LoginScreen;
 
 const styles = StyleSheet.create({
   loginScreen: {
-    flex: 1,
+    // flex: 1,
+    borderWidth: 2,
+    borderColor: 'red',
   },
   linearGradientContainer: {
+    borderWidth: 2,
+    borderColor: 'green',
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    height: Dimensions.get('screen').height,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   logo: {
     width: 280,
@@ -43,14 +47,15 @@ const styles = StyleSheet.create({
   },
   introductionText: {
     fontSize: 32,
-    fontFamily: "poppins-semibold",
+    fontFamily: 'poppins-semibold',
     marginBottom: 10,
   },
   buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-around",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginBottom: 20,
-    width: "100%",
+    width: '100%',
     paddingHorizontal: 20,
+    gap: 50,
   },
 });

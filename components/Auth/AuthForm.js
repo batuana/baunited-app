@@ -1,28 +1,31 @@
-import { View, StyleSheet, Text } from "react-native";
-import Input from "./Input";
-import Checkbox from "../Ui/Checkbox";
-import { useState } from "react";
-import { Colors } from "../../constants/styles";
-import Button from "../Ui/Button";
+import { View, StyleSheet, Text } from 'react-native';
+import Input from './Input';
+import Checkbox from '../UI/Checkbox';
+import { useState } from 'react';
+import { Colors } from '../../constants/styles';
+import Button from '../UI/Button';
 
 function AuthForm() {
   const [isSelected, setIsSelected] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   return (
     <View style={styles.formContainer}>
       <Input
         label="Email"
-        style={styles.emailInput}
         placeholder="Email"
-        icon="mail"
-        size={24}
+        icon={{ name: 'mail', size: 24 }}
+        value={email}
+        onUpdateValue={setEmail}
       />
       <Input
         label="Password"
         secure={true}
         placeholder="Password"
-        icon="eye"
-        size={24}
+        icon={{ name: 'eye', size: 24 }}
+        value={password}
+        onUpdateValue={setPassword}
       />
       <View style={styles.belowInputContainer}>
         <Checkbox
@@ -44,15 +47,14 @@ const styles = StyleSheet.create({
     gap: 13,
   },
   belowInputContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginBottom: 20,
   },
   forgotPasswordText: {
-    fontFamily: "poppins-semibold",
+    fontFamily: 'poppins-semibold',
     color: Colors.primary500,
   },
-  emailInput: {},
   passwordInputContainer: {},
 });
 
