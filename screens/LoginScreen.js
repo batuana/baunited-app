@@ -1,7 +1,7 @@
 import { View, ScrollView, Text, StyleSheet, Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import AuthContent from "../components/Auth/AuthContent";
-import LinkButton from "../components/UI/LinkButton";
+import CustomButton from "../components/UI/CustomButton";
 import { KeyboardAvoidingView } from "react-native";
 import { Dimensions } from "react-native";
 
@@ -20,10 +20,16 @@ function LoginScreen() {
         <Text style={styles.introductionText}>Welcome, Dear BAU Member!</Text>
         <AuthContent />
         <View style={styles.buttonContainer}>
-          <LinkButton imageSource={require("../assets/images/umis-logo.png")} />
-          <LinkButton
+          <CustomButton
+            type="link"
+            imageSource={require("../assets/images/umis-logo.png")}
+            url="https://umis.bau.edu.tr/"
+          ></CustomButton>
+          <CustomButton
+            type="link"
             imageSource={require("../assets/images/Itslearning-logo.png")}
-          />
+            url="https://www.itslearning.com/"
+          ></CustomButton>
         </View>
       </LinearGradient>
     </ScrollView>
