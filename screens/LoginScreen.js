@@ -2,7 +2,6 @@ import { View, ScrollView, Text, StyleSheet, Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import AuthContent from "../components/Auth/AuthContent";
 import CustomButton from "../components/UI/CustomButton";
-import { KeyboardAvoidingView } from "react-native";
 import { Dimensions } from "react-native";
 
 function LoginScreen() {

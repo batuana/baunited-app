@@ -1,6 +1,6 @@
 import { View, StyleSheet, Text } from "react-native";
 import Input from "./Input";
-import Checkbox from "../UI/Checkbox";
+import CheckBox from "../UI/Checkbox";
 import { useState } from "react";
 import { Colors } from "../../constants/styles";
 import CustomButton from "../UI/CustomButton";
@@ -28,7 +28,7 @@ function AuthForm() {
         onUpdateValue={setPassword}
       />
       <View style={styles.belowInputContainer}>
-        <Checkbox
+        <CheckBox
           text="Remember Me"
           isChecked={isSelected}
           onPress={() => {

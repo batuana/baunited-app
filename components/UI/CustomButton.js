@@ -34,6 +34,7 @@ const CustomButton = ({ children, onPress, imageSource, type, url }) => {
             resizeMode="contain"
           />
         )}
+
         <Text style={styles.buttonText}>{children}</Text>
       </View>
     </Pressable>

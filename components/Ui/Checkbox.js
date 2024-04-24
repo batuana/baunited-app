@@ -1,14 +1,14 @@
 import React, { useRef } from "react";
 import {
-  TouchableOpacity,
   Text,
   View,
   StyleSheet,
   Animated,
+  TouchableOpacity,
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
-const Checkbox = ({
+const CheckBox = ({
   text,
   onPress,
   isChecked,
@@ -73,4 +73,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Checkbox;
+export default CheckBox;
