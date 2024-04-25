@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     marginLeft: 10,
     fontFamily: "poppins-semibold",
+    marginRight: 20, // BUG
   },
 });
 

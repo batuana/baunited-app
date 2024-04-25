@@ -1,21 +1,21 @@
-import { View, StyleSheet, Text } from 'react-native';
-import Input from './Input';
-import Checkbox from '../UI/Checkbox';
-import { useState } from 'react';
-import { Colors } from '../../constants/styles';
-import Button from '../UI/Button';
+import { View, StyleSheet, Text } from "react-native";
+import Input from "./Input";
+import Checkbox from "../UI/Checkbox";
+import { useState } from "react";
+import { Colors } from "../../constants/styles";
+import Button from "../UI/Button";
 
 function AuthForm() {
   const [isSelected, setIsSelected] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
     <View style={styles.formContainer}>
       <Input
         label="Email"
         placeholder="Email"
-        icon={{ name: 'mail', size: 24 }}
+        icon={{ name: "mail", size: 24 }}
         value={email}
         onUpdateValue={setEmail}
       />
@@ -23,7 +23,7 @@ function AuthForm() {
         label="Password"
         secure={true}
         placeholder="Password"
-        icon={{ name: 'eye', size: 24 }}
+        icon={{ name: "eye", size: 24 }}
         value={password}
         onUpdateValue={setPassword}
       />
@@ -45,17 +45,18 @@ function AuthForm() {
 const styles = StyleSheet.create({
   formContainer: {
     gap: 13,
+    borderWidth: 2,
+    borderColor: "red",
   },
   belowInputContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginBottom: 20,
   },
   forgotPasswordText: {
-    fontFamily: 'poppins-semibold',
+    fontFamily: "poppins-semibold",
     color: Colors.primary500,
   },
-  passwordInputContainer: {},
 });
 
 export default AuthForm;

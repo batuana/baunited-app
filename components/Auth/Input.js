@@ -1,7 +1,14 @@
-import React, { useState, useRef } from 'react';
-import { Text, View, StyleSheet, TextInput, Animated, TouchableOpacity } from 'react-native';
-import { Colors } from '../../constants/styles';
-import { Ionicons } from '@expo/vector-icons';
+import React, { useState, useRef } from "react";
+import {
+  Text,
+  View,
+  StyleSheet,
+  TextInput,
+  Animated,
+  TouchableOpacity,
+} from "react-native";
+import { Colors } from "../../constants/styles";
+import { Ionicons } from "@expo/vector-icons";
 
 function Input({ label, secure, value, onUpdateValue, placeholder, icon }) {
   const [isFocused, setIsFocused] = useState(false);
@@ -9,7 +16,7 @@ function Input({ label, secure, value, onUpdateValue, placeholder, icon }) {
   const [placeholderHeight, setPlaceholderHeight] = useState(0);
   const topValue = useRef(new Animated.Value(0)).current;
 
-  const movePlaceholder = offset => {
+  const movePlaceholder = (offset) => {
     Animated.timing(topValue, {
       toValue: offset,
       duration: 200,
@@ -31,7 +38,7 @@ function Input({ label, secure, value, onUpdateValue, placeholder, icon }) {
             movePlaceholder(-15);
           }}
           onBlur={() => {
-            if (value === '') movePlaceholder(0);
+            if (value === "") movePlaceholder(0);
           }}
           keyboardShouldPersistTaps="handled"
         />
@@ -44,17 +51,22 @@ function Input({ label, secure, value, onUpdateValue, placeholder, icon }) {
           ]}
           pointerEvents="none"
         >
-          <Animated.Text style={styles.placeholderText}>{placeholder}</Animated.Text>
+          <Animated.Text style={styles.placeholderText}>
+            {placeholder}
+          </Animated.Text>
         </Animated.View>
-        {icon.name === 'eye' && (
+        {icon.name === "eye" && (
           <TouchableOpacity
             style={styles.iconContainer}
             onPress={() => setShowPassword(!showPassword)}
           >
-            <Ionicons name={showPassword ? 'eye-off' : 'eye'} size={icon.size} />
+            <Ionicons
+              name={showPassword ? "eye-off" : "eye"}
+              size={icon.size}
+            />
           </TouchableOpacity>
         )}
-        {icon.name !== 'eye' && (
+        {icon.name !== "eye" && (
           <View style={styles.iconContainer}>
             <Ionicons name={icon.name} size={icon.size} />
           </View>
@@ -70,31 +82,32 @@ export default Input;
 const styles = StyleSheet.create({
   inputContainer: {},
   animatedPlaceholderTextContainer: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
-  placeholderText: { color: '#B3B3B3', fontSize: 14, marginLeft: 20 },
+  placeholderText: { color: "#B3B3B3", fontSize: 14, marginLeft: 20 },
   label: {
     color: Colors.primary800,
-    fontFamily: 'poppins-semibold',
+    fontFamily: "poppins-semibold",
   },
   input: {
-    backgroundColor: '#ffffff',
-    borderColor: '#B3B3B3',
+    backgroundColor: "#ffffff",
+    borderColor: "#B3B3B3",
     borderWidth: 1,
     borderRadius: 50,
     paddingVertical: 12,
     paddingHorizontal: 20,
-    width: 350,
+    // width: "100%",
+    // width: 50,
     fontSize: 15,
   },
   iconContainer: {
-    position: 'absolute',
-    justifyContent: 'center',
+    position: "absolute",
+    justifyContent: "center",
     top: 0,
     bottom: 0,
     right: 20,

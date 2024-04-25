@@ -1,8 +1,14 @@
-import { View, ScrollView, Text, StyleSheet, Image } from "react-native";
+import {
+  View,
+  ScrollView,
+  Text,
+  StyleSheet,
+  Image,
+  Linking,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import AuthContent from "../components/Auth/AuthContent";
 import LinkButton from "../components/UI/LinkButton";
-import { KeyboardAvoidingView } from "react-native";
 import { Dimensions } from "react-native";
 
 function LoginScreen() {
@@ -22,6 +28,27 @@ function LoginScreen() {
         <View style={styles.buttonContainer}>
           <LinkButton imageSource={require("../assets/images/umis-logo.png")} />
           <LinkButton
+            onPress={async () => {
+              await Linking.openURL("https://buei.itslearning.com/");
+            }}
+            imageSource={require("../assets/images/Itslearning-logo.png")}
+          />
+        </View>
+        <View style={styles.buttonContainer}>
+          <LinkButton imageSource={require("../assets/images/umis-logo.png")} />
+          <LinkButton
+            onPress={async () => {
+              await Linking.openURL("https://buei.itslearning.com/");
+            }}
+            imageSource={require("../assets/images/Itslearning-logo.png")}
+          />
+        </View>
+        <View style={styles.buttonContainer}>
+          <LinkButton imageSource={require("../assets/images/umis-logo.png")} />
+          <LinkButton
+            onPress={async () => {
+              await Linking.openURL("https://buei.itslearning.com/");
+            }}
             imageSource={require("../assets/images/Itslearning-logo.png")}
           />
         </View>
@@ -33,19 +60,21 @@ export default LoginScreen;
 
 const styles = StyleSheet.create({
   loginScreen: {
-    // flex: 1,
+    flex: 1,
     borderWidth: 2,
     borderColor: "red",
   },
   linearGradientContainer: {
+    // flex: 1,
+    // paddingHorizontal: 50,
     borderWidth: 2,
     borderColor: "green",
-    flex: 1,
-    height: Dimensions.get("screen").height,
-    justifyContent: "center",
+    // justifyContent: "center",
     alignItems: "center",
   },
   logo: {
+    borderWidth: 1,
+    borderColor: "yellow",
     width: 280,
     height: 100,
     marginBottom: 20,
