@@ -23,7 +23,9 @@ function LoginScreen() {
           style={styles.logo}
           source={require("../assets/images/bau-logo.png")}
         />
-        <Text style={styles.introductionText}>Welcome, Dear BAU Memberr!</Text>
+        <Text style={styles.introductionText}>
+          Welcome, Dear BAU Memberr!!!
+        </Text>
         <AuthContent />
         <View style={styles.buttonContainer}>
           <LinkButton imageSource={require("../assets/images/umis-logo.png")} />
