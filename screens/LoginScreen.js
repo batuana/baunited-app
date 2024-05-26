@@ -1,97 +1,69 @@
 import {
+  Pressable,
   View,
-  ScrollView,
   Text,
-  StyleSheet,
   Image,
-  Linking,
-} from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
-import AuthContent from "../components/Auth/AuthContent";
-import LinkButton from "../components/UI/LinkButton";
-import { Dimensions } from "react-native";
+  StyleSheet,
+  Keyboard,
+  Dimensions,
+  StatusBar,
+} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { LinearGradient } from 'expo-linear-gradient';
+
+import LoginContent from '../components/Auth/Login/LoginContent';
 
 function LoginScreen() {
   return (
-    <ScrollView style={styles.loginScreen} behavior="height">
-      <LinearGradient
-        colors={["#4393BF", "#59B9EF", "#e9ecee"]}
-        locations={[0, 0.35, 1]}
-        style={styles.linearGradientContainer}
-      >
-        <Image
-          style={styles.logo}
-          source={require("../assets/images/bau-logo.png")}
-        />
-        <Text style={styles.introductionText}>
-          Welcome, Dear BAU Memberr!!!
-        </Text>
-        <AuthContent />
-        <View style={styles.buttonContainer}>
-          <LinkButton imageSource={require("../assets/images/umis-logo.png")} />
-          <LinkButton
-            onPress={async () => {
-              await Linking.openURL("https://buei.itslearning.com/");
-            }}
-            imageSource={require("../assets/images/Itslearning-logo.png")}
-          />
-        </View>
-        <View style={styles.buttonContainer}>
-          <LinkButton imageSource={require("../assets/images/umis-logo.png")} />
-          <LinkButton
-            onPress={async () => {
-              await Linking.openURL("https://buei.itslearning.com/");
-            }}
-            imageSource={require("../assets/images/Itslearning-logo.png")}
-          />
-        </View>
-        <View style={styles.buttonContainer}>
-          <LinkButton imageSource={require("../assets/images/umis-logo.png")} />
-          <LinkButton
-            onPress={async () => {
-              await Linking.openURL("https://buei.itslearning.com/");
-            }}
-            imageSource={require("../assets/images/Itslearning-logo.png")}
-          />
-        </View>
-      </LinearGradient>
-    </ScrollView>
+    <LinearGradient colors={['#3a8caf', '#fff']} style={styles.background}>
+      <SafeAreaView style={styles.screenContainer}>
+        <Pressable style={styles.pressable} onPress={() => Keyboard.dismiss()}>
+          <View style={styles.logoContainer}>
+            <Image style={styles.logo} source={require('../assets/images/bau-logo.png')} />
+          </View>
+          <LoginContent />
+          <Text style={styles.signUpText}>
+            Don't have an account?{'  '}
+            <Text style={styles.signUpTextStressed}>Register Now</Text>
+          </Text>
+        </Pressable>
+      </SafeAreaView>
+    </LinearGradient>
   );
 }
 export default LoginScreen;
 
 const styles = StyleSheet.create({
-  loginScreen: {
-    flex: 1,
-    borderWidth: 2,
-    borderColor: "red",
+  background: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height + StatusBar.currentHeight,
   },
-  linearGradientContainer: {
-    // flex: 1,
-    // paddingHorizontal: 50,
-    borderWidth: 2,
-    borderColor: "green",
-    // justifyContent: "center",
-    alignItems: "center",
+  screenContainer: {
+    flex: 1,
+  },
+  pressable: {
+    position: 'relative',
+    flex: 1,
+  },
+  logoContainer: {
+    marginTop: 20,
+    alignItems: 'center',
   },
   logo: {
-    borderWidth: 1,
-    borderColor: "yellow",
-    width: 280,
-    height: 100,
-    marginBottom: 20,
+    width: 140,
+    height: 56,
+    resizeMode: 'contain',
   },
-  introductionText: {
-    fontSize: 32,
-    fontFamily: "poppins-semibold",
-    marginBottom: 10,
+  signUpText: {
+    position: 'absolute',
+    bottom: 20,
+    width: '100%',
+    fontFamily: 'plusjakartasans-semibold',
+    textAlign: 'center',
+    color: '#000242',
   },
-  buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 20,
-    width: "100%",
-    paddingHorizontal: 20,
-    gap: 50,
+  signUpTextStressed: {
+    fontFamily: 'plusjakartasans-extrabold',
+    color: '#3a8caf',
   },
 });
