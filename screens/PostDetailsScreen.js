@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import {
   Pressable,
   View,
@@ -6,21 +6,20 @@ import {
   ActivityIndicator,
   StyleSheet,
   FlatList,
-  TextInput,
-} from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useIsFocused } from '@react-navigation/native';
-import { SimpleLineIcons } from '@expo/vector-icons';
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useIsFocused } from "@react-navigation/native";
+import { SimpleLineIcons } from "@expo/vector-icons";
 
-import PostHeader from '../components/Post/PostHeader';
-import PostContent from '../components/Post/PostContent';
-import PostFooter from '../components/Post/PostFooter';
-import { getPost } from '../services/apiPosts';
+import PostHeader from "../components/Post/PostHeader";
+import PostContent from "../components/Post/PostContent";
+import PostFooter from "../components/Post/PostFooter";
+import { getPost } from "../services/apiPosts";
 
-import CommentItem from '../components/Comment/CommentItem';
+import CommentItem from "../components/Comment/CommentItem";
 
 function PostDetailsScreen({ route, navigation }) {
-  console.log('post details screen');
+  console.log("post details screen");
   const [isLoading, setIsLoading] = useState(true);
   const [post, setPost] = useState();
   const isFocused = useIsFocused();
@@ -40,12 +39,18 @@ function PostDetailsScreen({ route, navigation }) {
   }, [isFocused]);
 
   function handlePress() {
-    navigation.navigate('AddCommentScreen', { title: post.title, id: post._id });
+    navigation.navigate("AddCommentScreen", {
+      title: post.title,
+      id: post._id,
+    });
   }
 
   return (
     <SafeAreaView
-      style={[styles.container, { justifyContent: isLoading ? 'center' : 'flex-start' }]}
+      style={[
+        styles.container,
+        { justifyContent: isLoading ? "center" : "flex-start" },
+      ]}
     >
       {isLoading ? (
         <ActivityIndicator size="medium" color="#07aff7" />
@@ -58,9 +63,16 @@ function PostDetailsScreen({ route, navigation }) {
               imageUri="https://robohash.org/stefan-two"
             />
             <PostContent title={post.title} description={post.description} />
-            <PostFooter id={post._id} rating={post.rating} commentCount={post.comments.length} />
+            <PostFooter
+              id={post._id}
+              rating={post.rating}
+              commentCount={post.comments.length}
+            />
           </View>
-          <FlatList data={post.comments} renderItem={({ item }) => <CommentItem item={item} />} />
+          <FlatList
+            data={post.comments}
+            renderItem={({ item }) => <CommentItem item={item} />}
+          />
           <View style={styles.inputContainer}>
             <Pressable onPress={handlePress} style={styles.commentInput}>
               <Text style={styles.placeholder}>Add a comment</Text>
@@ -80,38 +92,38 @@ export default PostDetailsScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    backgroundColor: 'white',
+    justifyContent: "center",
+    backgroundColor: "white",
   },
   postContainer: {
     paddingHorizontal: 15,
     paddingVertical: 10,
     borderBottomWidth: 2,
-    borderBottomColor: '#ebebeb',
+    borderBottomColor: "#ebebeb",
   },
   inputContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
     gap: 10,
     padding: 8,
     elevation: 0.08,
   },
   commentInput: {
-    backgroundColor: '#f2f3f5',
+    backgroundColor: "#f2f3f5",
     padding: 4,
     borderRadius: 8,
     height: 45,
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   placeholder: {
     marginLeft: 10,
-    fontFamily: 'plusjakartasans-regular',
-    color: '#747373',
+    fontFamily: "plusjakartasans-regular",
+    color: "#747373",
   },
   scrollButtonContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f2f3f5',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#f2f3f5",
     height: 45,
     width: 45,
     borderRadius: 30,

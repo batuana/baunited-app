@@ -1,22 +1,22 @@
 // SocketManager.js
-import io from 'socket.io-client';
+import io from "socket.io-client";
 
-const SERVER_URL = 'http://192.168.2.2:3000';
+const SERVER_URL = "http://192.168.1.112:3000";
 
 class SocketManager {
   constructor() {
     this.socket = io(SERVER_URL);
-    this.socket.on('connect', () => {
-      console.log('Connected to server');
+    this.socket.on("connect", () => {
+      console.log("Connected to server");
     });
   }
 
   sendMessage(message) {
-    this.socket.emit('messageToServer', message);
+    this.socket.emit("messageToServer", message);
   }
 
   receiveMessage(callback) {
-    this.socket.on('messageFromServer', callback);
+    this.socket.on("messageFromServer", callback);
   }
 }
 
